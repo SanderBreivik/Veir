@@ -61,7 +61,6 @@ export class VeirGeoLocation extends LitElement {
   }
 
   weatherToSlIcon(weather: string) {
-    var icon = "";
     switch (weather) {
       case "clearsky_day":
       case "clearsky_night":

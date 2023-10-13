@@ -56,7 +56,9 @@ export interface Details {
 }
 
 export interface Summary {
-  symbol_code: string;
+  summary: {
+    symbol_code: string;
+  };
 }
 
 export interface NextHours {
