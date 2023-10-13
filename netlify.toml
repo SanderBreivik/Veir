@@ -1,0 +1,4 @@
+[[redirects]]
+  from = "/shoelace/*"
+  to = "/node_modules/@shoelace-style/shoelace/:splat"
+  status = 200
