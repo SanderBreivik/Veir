@@ -1,10 +1,15 @@
+import { copy } from "vite-plugin-copy";
+
 export default {
-  server: {
-    proxy: {
-      "/shoelace": {
-        target: "node_modules/@shoelace-style/shoelace",
-        rewrite: (path) => path.replace(/^\/shoelace/, ""),
-      },
-    },
-  },
+  plugins: [
+    copy({
+      targets: [
+        {
+          src: "node_modules/@shoelace-style/shoelace/dist/*",
+          dest: "public/shoelace",
+        },
+      ],
+      hook: "writeBundle", // ensures the assets are copied during the build
+    }),
+  ],
 };
