@@ -6,6 +6,8 @@ import YrService from "./services/yr.service";
 import { Feature } from "./models/yr.model";
 import moment from "moment";
 import "moment/locale/nb";
+import { until } from "lit/directives/until.js";
+import MapsService from "./services/maps.service";
 moment.locale("nb");
 
 @customElement("veir-geolocation")
@@ -18,6 +20,23 @@ export class VeirGeoLocation extends LitElement {
   static styles = css`
     .error {
       color: red;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .center::part(body) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .center::part(header) {
+      font-size: 2rem;
+      text-align: center;
     }
   `;
 
@@ -140,26 +159,34 @@ export class VeirGeoLocation extends LitElement {
     return html`
       ${this.error ? html`<div class="error">${this.error}</div>` : ""}
       ${this.latitude && this.longitude && this.weatherData
-        ? html`<div>
-            Din lokasjon: Breddegrad: ${this.latitude}, Lengdegrad:
-            ${this.longitude}
-            <sl-icon
-              style="font-size: 5rem;"
-              name="${this.weatherToSlIcon(
-                this.weatherData.properties.timeseries[0].data.next_12_hours
-                  .summary.symbol_code
-              )}"
-            ></sl-icon>
-            <sl-tree>
-              ${this.weatherData.properties.timeseries.map((time) => {
-                return html`<sl-tree-item>
-                  ${moment(time.time).fromNow()}:
-                  <sl-tree-item
-                    >${time.data.instant.details.air_temperature}
-                  </sl-tree-item>
-                </sl-tree-item>`;
-              })}
-            </sl-tree>
+        ? html`<div class="container">
+            <sl-card class="center">
+              <div slot="header" part="header">
+                ${until(MapsService.getCityName(this.latitude, this.longitude))}
+              </div>
+              ${this.weatherData.properties.timeseries[0].data.instant.details
+                .air_temperature}
+              °C
+              <sl-icon
+                style="font-size: 5rem;"
+                name="${this.weatherToSlIcon(
+                  this.weatherData.properties.timeseries[0].data.next_12_hours
+                    .summary.symbol_code
+                )}"
+              ></sl-icon>
+            </sl-card>
+            <sl-card>
+              <sl-tree>
+                ${this.weatherData.properties.timeseries.map((time) => {
+                  return html`<sl-tree-item>
+                    ${moment(time.time).fromNow()}:
+                    <sl-tree-item
+                      >${time.data.instant.details.air_temperature}
+                    </sl-tree-item>
+                  </sl-tree-item>`;
+                })}
+              </sl-tree>
+            </sl-card>
           </div>`
         : ""}
     `;
