@@ -1,46 +1,42 @@
-export interface AddressComponent {
-  long_name: string;
-  short_name: string;
-  types: string[];
+export interface MapboxResponse {
+  type: string;
+  query: number[];
+  features: Feature[];
+  attribution: string;
 }
 
-export interface Bounds {
-  northeast: Location;
-  southwest: Location;
+export interface Feature {
+  id: string;
+  type: string;
+  place_type: string[];
+  relevance: number;
+  properties: Properties;
+  text_nb: string;
+  place_name_nb: string;
+  text: string;
+  place_name: string;
+  bbox: number[];
+  center: number[];
+  geometry: Geometry;
+  context: Context[];
 }
 
-export interface Location {
-  lat: number;
-  lng: number;
-}
-
-export interface Viewport {
-  northeast: Location;
-  southwest: Location;
+export interface Properties {
+  mapbox_id: string;
 }
 
 export interface Geometry {
-  bounds: Bounds;
-  location: Location;
-  location_type: string;
-  viewport: Viewport;
+  type: string;
+  coordinates: number[];
 }
 
-export interface Result {
-  address_components: AddressComponent[];
-  formatted_address: string;
-  geometry: Geometry;
-  place_id: string;
-  types: string[];
-}
-
-export interface PlusCode {
-  compound_code: string;
-  global_code: string;
-}
-
-export interface AddressLookupResponse {
-  plus_code: PlusCode;
-  results: Result[];
-  status: string;
+export interface Context {
+  id: string;
+  mapbox_id: string;
+  wikidata: string;
+  short_code: string;
+  text_nb: string;
+  language_nb: string;
+  text: string;
+  language: string;
 }

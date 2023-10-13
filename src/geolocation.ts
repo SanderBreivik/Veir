@@ -179,8 +179,13 @@ export class VeirGeoLocation extends LitElement {
                 ${this.weatherData.properties.timeseries.map((time) => {
                   return html`<sl-tree-item>
                     ${moment(time.time).fromNow()}:
-                    <sl-tree-item
-                      >${time.data.instant.details.air_temperature}
+                    <sl-tree-item>
+                      ${time.data.instant.details.air_temperature}°C
+                      <sl-icon
+                        name="${this.weatherToSlIcon(
+                          time.data.next_12_hours?.summary.symbol_code
+                        )}"
+                      ></sl-icon>
                     </sl-tree-item>
                   </sl-tree-item>`;
                 })}
