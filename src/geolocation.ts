@@ -6,7 +6,6 @@ import YrService from "./services/yr.service";
 import { Feature } from "./models/yr.model";
 import moment from "moment";
 import "moment/locale/nb";
-
 moment.locale("nb");
 
 @customElement("veir-geolocation")
@@ -72,12 +71,16 @@ export class VeirGeoLocation extends LitElement {
             ${this.longitude}
             <br />
             Vær:
-            ${this.weatherData.properties.timeseries.map((time) => {
-              return html`<div>
-                ${moment(time.time).fromNow()}:
-                ${time.data.instant.details.air_temperature}
-              </div>`;
-            })}
+            <sl-tree>
+              ${this.weatherData.properties.timeseries.map((time) => {
+                return html`<sl-tree-item>
+                  ${moment(time.time).fromNow()}:
+                  <sl-tree-item
+                    >${time.data.instant.details.air_temperature}</sl-tree-item
+                  >
+                </sl-tree-item>`;
+              })}
+            </sl-tree>
           </div>`
         : ""}
     `;
