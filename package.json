@@ -18,6 +18,7 @@
     "typescript": "^5.0.2",
     "vite": "^4.4.11",
     "vite-plugin-commonjs": "^0.10.0",
-    "vite-plugin-copy": "^0.1.6"
+    "vite-plugin-copy": "^0.1.6",
+    "vite-plugin-static-copy": "^0.17.0"
   }
 }

@@ -1,11 +1,12 @@
 import path from "path";
 import { defineConfig } from "vite";
-import copy from "vite-plugin-copy";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 import commonjs from "vite-plugin-commonjs";
+
 export default defineConfig({
   build: {
     rollupOptions: {
-      input: "src/index.js",
+      input: "src/main.ts",
       output: {
         dir: path.resolve(__dirname, "dist"),
       },
@@ -13,15 +14,11 @@ export default defineConfig({
   },
   plugins: [
     commonjs(),
-    copy({
-      copyOnce: true,
+    viteStaticCopy({
       targets: [
         {
-          src: path.resolve(
-            __dirname,
-            "node_modules/@shoelace-style/shoelace/dist/assets"
-          ),
-          dest: path.resolve(__dirname, "dist/shoelace"),
+          src: "node_modules/@shoelace-style/shoelace/dist/assets",
+          dest: "shoelace",
         },
       ],
     }),
