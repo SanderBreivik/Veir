@@ -1,8 +1,14 @@
-import { setBasePath } from "@shoelace-style/shoelace";
 import "./dashboard.ts";
 import "./geolocation.ts";
-import "@shoelace-style/shoelace/dist/shoelace.js";
 import "@shoelace-style/shoelace/dist/themes/dark.css";
+import "@shoelace-style/shoelace/dist/components/button/button.js";
+import "@shoelace-style/shoelace/dist/components/icon/icon.js";
+import "@shoelace-style/shoelace/dist/components/input/input.js";
+import "@shoelace-style/shoelace/dist/components/tree/tree.js";
+import "@shoelace-style/shoelace/dist/components/tree-item/tree-item.js";
+import "@shoelace-style/shoelace/dist/components/card/card.js";
 
-// This path should lead to your node_modules folder or where the Shoelace assets are located.
-setBasePath("/node_modules/@shoelace-style/shoelace/dist/");
+import { setBasePath } from "@shoelace-style/shoelace/dist/utilities/base-path.js";
+
+// Set the base path to the folder you copied Shoelace's assets to
+setBasePath("../node_modules/@shoelace-style/shoelace/dist");
