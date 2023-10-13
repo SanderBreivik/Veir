@@ -16,7 +16,7 @@ export default class MapsService {
 
     const place =
       data.features.find((feature: any) => feature.place_type.includes("place"))
-        ?.place_name ?? "Ukjent sted";
+        ?.text ?? "Ukjent sted";
     return place;
   }
 }
