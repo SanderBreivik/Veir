@@ -2,6 +2,9 @@
 
 Veir is a Lit + TypeScript project that shows weather data from your current location using Yr's API.
 
+[Deployed on Netlify](https://veir.netlify.app)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/4112ac71-c808-45e5-903b-6d2fbe07e9a2/deploy-status)](https://app.netlify.com/sites/veir/deploys)
 ## Getting Started
 
 To get started with Veir, follow these steps:
