@@ -6,7 +6,7 @@ import commonjs from "vite-plugin-commonjs";
 export default defineConfig({
   build: {
     rollupOptions: {
-      input: "src/main.ts",
+      input: ["index.html"],
       output: {
         dir: path.resolve(__dirname, "dist"),
       },
