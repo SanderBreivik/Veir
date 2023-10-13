@@ -12,11 +12,11 @@ export default class MapsService {
       `https://api.mapbox.com/geocoding/v5/mapbox.places/${long},${lat}.json?access_token=${MAPBOX_TOKEN}&types=place&language=nb`
     );
 
-    const data = await response.json();
+    const data = (await response.json()) as MapboxResponse;
 
-    const place = data.features.find((feature: any) =>
-      feature.place_type.includes("place")
-    ).place_name;
+    const place =
+      data.features.find((feature: any) => feature.place_type.includes("place"))
+        ?.place_name ?? "Ukjent sted";
     return place;
   }
 }
