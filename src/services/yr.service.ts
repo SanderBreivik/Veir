@@ -16,8 +16,9 @@ export default class YrService {
       const data = await response.json();
       console.log("Data: ", data);
       return data;
-    } catch (error) {
+    } catch (error: any) {
       console.error(error);
+      console.error(error.message);
       throw new Error("Could not fetch weather data");
     }
   }
