@@ -192,7 +192,7 @@ export class VeirGeoLocation extends LitElement {
               </sl-tree>
             </sl-card>
           </div>`
-        : ""}
+        : `Kunne ikke laste inn værdata. Prøv igjen senere. this.latitude: ${this.latitude}, this.longitude: ${this.longitude}, this.weatherData: ${this.weatherData}. this.error: ${this.error}`}
     `;
   }
 }
