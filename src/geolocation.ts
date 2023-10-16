@@ -55,10 +55,14 @@ export class VeirGeoLocation extends LitElement {
   async handlePosition(position: GeolocationPosition) {
     this.latitude = position.coords.latitude;
     this.longitude = position.coords.longitude;
-    this.weatherData = await YrService.getYrWeatherData(
-      this.latitude.toString(),
-      this.longitude.toString()
-    );
+    try {
+      this.weatherData = await YrService.getYrWeatherData(
+        this.latitude.toString(),
+        this.longitude.toString()
+      );
+    } catch (error) {
+      this.error = "Could not fetch weather data";
+    }
   }
 
   weatherToSlIcon(weather: string) {
