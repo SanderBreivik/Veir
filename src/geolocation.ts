@@ -43,10 +43,11 @@ export class VeirGeoLocation extends LitElement {
   firstUpdated() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
-        this.handlePosition.bind(this),
-        this.handleError.bind(this)
+        (position) => this.handlePosition(position),
+        (error) => this.handleError(error)
       );
     } else {
+      console.error("Geolocation is not supported by this browser.");
       this.error = "Geolokasjon støttes ikke av denne nettleseren.";
     }
   }
@@ -134,6 +135,8 @@ export class VeirGeoLocation extends LitElement {
   }
 
   handleError(error: GeolocationPositionError) {
+    console.error(error.code, error.message);
+
     switch (error.code) {
       case error.PERMISSION_DENIED:
         this.error = "Brukeren nektet forespørselen om geolokasjon.";
@@ -152,9 +155,6 @@ export class VeirGeoLocation extends LitElement {
   }
 
   render() {
-    moment.locale("nb");
-    console.log(moment.locale());
-
     return html`
       ${this.error ? html`<div class="error">${this.error}</div>` : ""}
       ${this.latitude && this.longitude && this.weatherData
