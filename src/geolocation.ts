@@ -181,7 +181,7 @@ export class VeirGeoLocation extends LitElement {
             <sl-card>
               <sl-tree>
                 ${this.weatherData.properties.timeseries.map((time) => {
-                  return html`<sl-tree-item>
+                  return html`<sl-tree-item expanded>
                     ${moment(time.time).fromNow()}:
                     <sl-tree-item>
                       ${time.data.instant.details.air_temperature}°C
